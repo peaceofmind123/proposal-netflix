@@ -1,0 +1,181 @@
+.navigation {
+    &__button {
+        position: fixed;
+        top: 6rem;
+        right: 6rem; // to understand this, if you forget, look at the video (first one)
+
+        width: 7rem;
+        height: 7rem;
+        border-radius: 50%;
+
+        z-index: 2000;
+        background-color: $color-white;
+        text-align: center;
+
+        @include respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+            
+        }
+        @include respond(phone) {
+            top: 3.5rem;
+            right: 3.5rem;
+            
+        }
+    }
+    
+    &__check-box {
+        display: none;
+    }
+
+    &__background {
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem; // so that it is inside the &__button element
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+
+        z-index: 1000;
+        transition: transform .8s cubic-bezier(0.86, 0, 0.07, 1);
+
+        @include respond(tab-port) {
+            top: 4.5rem;
+            right: 4.5rem;
+            
+        }
+
+        @include respond(tab-port) {
+            top: 4rem;
+            right: 4rem;
+            
+        }
+    }
+
+    &__nav {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1500;
+        
+        // initial state
+        opacity: 0;
+        width: 0; 
+
+        transition: all .8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        
+    }
+
+    &__list {
+        list-style: none;
+        
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        
+    }
+
+    &__item {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            display: inline-block;
+            padding: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            color: $color-gray-light-1;
+            font-size: 3rem;
+            font-weight: 300;
+
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            background-size: 230%; //basically scales the bg by 220%, so the solid grad is shifted out of view
+            transition: all .4s;
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%; // now we shift right and down by the width, so 
+                                       // we align beginning of solid grad to left of the link
+            color: $color-primary; 
+            transform: translateX(1rem); 
+        }
+        
+        span {
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+    }
+
+    // functionality
+    &__check-box:checked ~ &__background {
+        transform: scale(80);
+    }
+
+    &__check-box:checked ~ &__nav {
+        opacity: 1;
+        width: 100%;
+    }
+
+    // icon
+    &__icon {
+        position: relative;
+        width: 50%;
+        margin-top: 50%; // to center it
+        &,
+        &::before,
+        &::after {
+            display: inline-block;
+            
+            height: 2px;
+            background-color: $color-gray-dark-3;
+            transition: all .2s;
+        }
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+        }
+        &::before {
+            top: -.8rem;
+        }
+        &::after {
+            top: .8rem;
+        }
+    }
+
+    &__button:hover  &__icon::before {
+        top: -1rem;
+        
+    }
+
+    &__button:hover  &__icon::after {
+        top: 1rem;
+        
+    }
+
+    &__check-box:checked + &__button &__icon {
+        background-color: transparent;
+    }
+
+    &__check-box:checked + &__button &__icon::before {
+        top: 0; // move it down
+        transform: rotate(135deg);
+    }
+
+    &__check-box:checked + &__button &__icon::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+}

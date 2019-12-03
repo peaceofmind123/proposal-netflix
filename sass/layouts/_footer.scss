@@ -1,0 +1,77 @@
+.footer {
+    padding: 10rem 0;
+    background-color: $color-gray-dark-3;
+    color: $color-gray-light-1;
+    font-size: 1.4rem;
+
+    @include respond(tab-port) {
+        padding: 8rem 0;
+    }
+    &__logo-box {
+        margin-bottom: 8rem;
+        text-align: center;
+
+    }
+
+    &__logo {
+        width: 15rem;
+        
+    }
+
+    &__navigation {
+        padding-top: 2rem;
+        border-top: 1px solid $color-gray-dark-2;
+        display: inline-block;
+        
+        @include respond(tab-port) {
+            width: 100%;
+            text-align: center;
+            float: none;
+        }
+    }
+
+    &__list {
+        list-style: none;
+    }
+
+    &__list-item {
+        display: inline-block;
+        
+        &:not(:last-child) {
+            padding-right: 2rem;
+        }
+    }
+    
+    &__link {
+        display: inline-block; // needed to apply transform props
+        
+        &:link,
+        &:visited {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: inherit;
+            transition: all .1s;
+        }
+        
+        &:hover,
+        &:active {
+            background-color: $color-gray-dark-3;
+            color: $color-primary;
+            box-shadow: 0 1rem 2rem rgba($color-black, .4);
+            transform: scale(1.1) rotate(5deg);
+        }
+    }
+
+    &__copyright {
+        padding-top: 2rem;
+        border-top: 1px solid $color-gray-dark-2;
+        float: right;
+        width: 80%;
+
+        @include respond(tab-port) {
+            width: 100%;
+            text-align: center;
+            float: none;
+        }
+    }
+}

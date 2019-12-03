@@ -1,0 +1,42 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/*Global Text Configuration*/
+
+html {
+  font-size: 62.5%; /* Equivalent to 10px */
+
+  // root font size configuration for different screens
+  // min width conf
+  @include respond(big-desktop) {
+    font-size: 75%; // equivalent to 12px (=12/16 %)
+  }
+
+  // max width conf: start from largest
+  @include respond(tab-land) {
+    font-size: 56.25%; // equivalent to 9px
+  }
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+  // no need of phone cuz the 50% desired fontsize is covered by tab-port
+}
+
+body {
+  box-sizing: border-box;
+
+  @include respond(tab-port) {
+    padding: 0; // remove the white padding all around
+  }
+}
+
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
